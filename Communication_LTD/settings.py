@@ -55,8 +55,7 @@ ROOT_URLCONF = "Communication_LTD.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / 'templates']
-        ,
+        "DIRS": [BASE_DIR / 'templates'],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -92,6 +91,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+        "OPTIONS": {"min_length": 8},  # שינוי: דרישת אורך מינימלי
     },
     {
         "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
@@ -123,3 +123,16 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# **שינוי: הוספת הגדרות אימייל**
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.example.com"  # Replace with your email host, e.g., "smtp.gmail.com"
+EMAIL_PORT = 587  # Usually 587 for TLS
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "your_email@example.com"  # Replace with your email address
+EMAIL_HOST_PASSWORD = "your_password"  # Replace with your email password
+
+# **שינוי: הוספת הפניות לאחר התחברות והתנתקות**
+LOGIN_REDIRECT_URL = "/dashboard/"  # Change to the page you want after login
+LOGOUT_REDIRECT_URL = "/login/"  # Change to the page you want after logout
+
